@@ -1,4 +1,4 @@
-import os, sys, time, json, requests
+import os, sys, time, requests
 
 TOKEN_FILE = "api_token.txt"
 DELAY_SECONDS = 180
@@ -53,17 +53,23 @@ def _post_order(token, url, data):
     except Exception:
         return r.status_code, {"status":"error","message":"Phản hồi không phải JSON"}
 
+def clear_console():
+    os.system("cls" if os.name == "nt" else "clear")
+
 def main():
+    clear_console()
     print(Fore.MAGENTA + Style.BRIGHT + """
-══════════════════════════════════════
-             MENU TOOLS
-══════════════════════════════════════
- [1] View TikTok         (1000 view)
- [2] Like TikTok         (10 like)
- [3] Follow TikTok       (10 follow)
- [4] Like Fanpage FB     (10 like)
- [5] Like Instagram      (10 like)
-══════════════════════════════════════
+╔══════════════════════════════════════╗
+║                                      ║
+║        🚀 MENU AUTO TOOLS 🚀         ║
+║                                      ║
+╠══════════════════════════════════════╣
+║  1. 📺 View TikTok        (1000 view)║
+║  2. ❤️ Like TikTok        (10 like)  ║
+║  3. 👥 Follow TikTok      (10 follow)║
+║  4. 👍 Like Fanpage FB    (10 like)  ║
+║  5. 💖 Like Instagram     (10 like)  ║
+╚══════════════════════════════════════╝
 """ + Style.RESET_ALL)
 
     choice = input(Fore.YELLOW + "👉 Chọn dịch vụ (1-5): " + Style.RESET_ALL).strip()
