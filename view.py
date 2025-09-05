@@ -34,7 +34,7 @@ def _spinner_wait(seconds):
         sys.stdout.write(f"\r{Fore.YELLOW}{Style.BRIGHT}{s} Đang delay, thử lại sau {mm:02d}:{ss:02d}...{Style.RESET_ALL}")
         sys.stdout.flush()
         time.sleep(1)
-    sys.stdout.write("\r" + " " * 60 + "\r")
+    sys.stdout.write("\r" + " " * 70 + "\r")
     sys.stdout.flush()
 
 def _post_order(token, link, amount="1000", server_order="4", giftcode="", note=""):
@@ -61,14 +61,16 @@ def main():
         status_code, result = _post_order(api_token, link)
         if status_code != 200:
             print(f"{Fore.RED}{Style.BRIGHT}HTTP {status_code}{Style.RESET_ALL} | {json.dumps(result, ensure_ascii=False)}")
-            sys.exit(1)
+            break
 
         status = str(result.get("status", "")).lower()
         message = result.get("message", "")
 
         if status == "success" and "Lên đơn thành công" in message:
             print(f"{Fore.GREEN}{Style.BRIGHT}✅ Thành công:{Style.RESET_ALL} {json.dumps(result, ensure_ascii=False)}")
-            break
+            announced_delay = False
+            _spinner_wait(DELAY_SECONDS)
+            continue
 
         if status == "error" and "miễn phí" in message:
             if not announced_delay:
