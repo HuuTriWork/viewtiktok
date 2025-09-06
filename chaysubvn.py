@@ -56,9 +56,9 @@ def countdown(sec):
         m, s = divmod(sec, 60)
         print(
             f"\r{Fore.YELLOW}⏳ Delay: {m:02d}:{s:02d} "
-            f"| {Fore.WHITE}Tổng view: {total_view} "
-            f"| {Fore.GREEN}Success: {success_count} "
-            f"| {Fore.RED}Fail: {fail_count}",
+            f"| {Fore.WHITE}🔍 Tổng view: {total_view} "
+            f"| {Fore.GREEN}✅ Success: {success_count} "
+            f"| {Fore.RED}❌ Fail: {fail_count}",
             end=""
         )
         time.sleep(1)
