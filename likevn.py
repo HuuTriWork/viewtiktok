@@ -1,6 +1,6 @@
 import os, sys, time, requests
 
-TOKEN_FILE = "api_token.txt"
+TOKEN_FILE = "api_token2.txt"
 DELAY_SECONDS = 180
 
 try:
