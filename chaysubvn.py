@@ -79,4 +79,4 @@ if __name__ == "__main__":
         else:
             fail_count += 1
 
-        countdown(30)
+        countdown(60)
