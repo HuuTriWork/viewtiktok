@@ -74,7 +74,7 @@ if __name__ == "__main__":
         status, result = create_order(object_id, api_token)
 
         if status == 200 and result.get("status") == "success":
-            total_view += 500
+            total_view += 1000
             success_count += 1
         else:
             fail_count += 1
