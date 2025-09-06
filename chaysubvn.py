@@ -8,6 +8,10 @@ init(autoreset=True)
 API_URL = "https://chaysub.vn/api/v1/order"
 TOKEN_FILE = "api_token.txt"
 
+total_view = 0
+success_count = 0
+fail_count = 0
+
 def get_api_token():
     if os.path.exists(TOKEN_FILE):
         with open(TOKEN_FILE, "r", encoding="utf-8") as f:
@@ -50,7 +54,13 @@ def create_order(object_id, api_token):
 def countdown(sec):
     while sec > 0:
         m, s = divmod(sec, 60)
-        print(f"\r{Fore.YELLOW}⏳ Đang delay: {m:02d}:{s:02d}", end="")
+        print(
+            f"\r{Fore.YELLOW}⏳ Delay: {m:02d}:{s:02d} "
+            f"| {Fore.GREEN}Tổng view: {total_view} "
+            f"| Success: {success_count} "
+            f"| Fail: {fail_count}",
+            end=""
+        )
         time.sleep(1)
         sec -= 1
     print("\r", end="")
@@ -64,8 +74,9 @@ if __name__ == "__main__":
         status, result = create_order(object_id, api_token)
 
         if status == 200 and result.get("status") == "success":
-            print(Fore.GREEN + f"✅ Đã tăng 500 view | Mã đơn: {result['data']['order_code']}")
+            total_view += 500
+            success_count += 1
         else:
-            print(Fore.YELLOW + "⚠️ Đơn trước chưa hoàn thành, vui lòng thử lại sau...")
+            fail_count += 1
 
         countdown(30)
