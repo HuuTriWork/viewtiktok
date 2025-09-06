@@ -6,7 +6,7 @@ from colorama import init, Fore
 init(autoreset=True)
 
 API_URL = "https://chaysub.vn/api/v1/order"
-TOKEN_FILE = "api_token.txt"
+TOKEN_FILE = "api_token3.txt"
 
 total_view = 0
 success_count = 0
