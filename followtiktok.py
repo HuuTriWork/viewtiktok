@@ -17,7 +17,7 @@ for module in ["requests"]:
 
 success_count = 0
 total_follow = 0
-TOKEN_FILE = "api_token.txt"
+TOKEN_FILE = "api_token2.txt"
 
 def get_api_token():
     if os.path.exists(TOKEN_FILE):
@@ -94,3 +94,4 @@ if __name__ == "__main__":
             order_follow(link)
     except KeyboardInterrupt:
         print("\nĐã dừng chương trình.")
+
